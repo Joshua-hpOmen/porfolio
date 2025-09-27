@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ExternalLink, Github, Linkedin, Mail, Phone } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 
 export function Portfolio() {
   const [activeSection, setActiveSection] = useState("home")
@@ -314,7 +315,7 @@ export function Portfolio() {
                   title: "Website Builder",
                   description:
                     "Full-stack platform to help agencies reach out, organize, to create websites for customer via drag and drop components and even allows for you to add custom components.",
-                  tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
+                  tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Prisma", "TypeScript", "Nextjs"],
                   image: "/sitecraft-image.png",
                   github: "https://github.com/Joshua-hpOmen/site-craft",
                   live: "https://sitecraftprod.vercel.app/"
@@ -323,7 +324,7 @@ export function Portfolio() {
                   title: "Webscrapping Automation Tool",
                   description:
                     "The solution to tedius tasks that know one wants to do, this webscrapping tool uses a user friendly ui and drag and drop to allow anyone to automate tasks via webscrapping and the help of Ai",
-                  tech: ["Vue.js", "Express", "Socket.io", "MongoDB"],
+                  tech: ["React", "Node.js", "PostgreSQL", "Stripe", "ReactFlow", "Tanstackquery", "Prisma", "TypeScript", "Nextjs"],
                   image: "/flowcraft-image.png",
                   github: "https://github.com/Joshua-hpOmen/flow-craft",
                   live: "https://flow--craft.vercel.app/"
@@ -333,7 +334,7 @@ export function Portfolio() {
                   title: "Chatbot Platform",
                   description:
                     "This platform is for companies who dont have the funds to have employees contantly online to help with customer service. It integratesa an Ai chatbot into anyones application to have seemless customer interaction and service",
-                  tech: ["D3.js", "Python", "Flask", "Redis"],
+                  tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Nextjs", "Tanstackquery", "Prisma", "TypeScript", "Convex"],
                   image: "/agentcraft-image.png",
                   github: "https://github.com/Joshua-hpOmen/agent-craft",
                   live: "https://agent-craft-suite.vercel.app/"
@@ -360,7 +361,7 @@ export function Portfolio() {
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tech.map((tech) => (
+                        {project.tech.map((tech, indx) => (
                           <span
                             key={tech}
                             className="px-2 py-1 bg-emerald-500/8 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-medium backdrop-blur-sm border border-emerald-500/15"
@@ -378,14 +379,62 @@ export function Portfolio() {
                           <Github className="w-3 h-3 mr-2" />
                           Code
                         </Link>
-                        <Link
-                          href={project.live}
-                          className={ cn( buttonVariants({variant: "outline"}),"border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/8 bg-emerald-500/3 backdrop-blur-sm text-xs",   )}
-                          target="_blank"
-                        >
-                          <ExternalLink className="w-3 h-3 mr-2" />
-                          Live Demo
-                        </Link>
+                        {
+                          index !== 2 ? <Link
+                            href={project.live}
+                            className={ cn( buttonVariants({variant: "outline"}),"border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/8 bg-emerald-500/3 backdrop-blur-sm text-xs",   )}
+                            target="_blank"
+                          >
+                            <ExternalLink className="w-3 h-3 mr-2" />
+                            Live Demo
+                          </Link> : <Dialog>
+
+                              <DialogTrigger asChild>
+                                  <Button
+                                    className={ cn( buttonVariants({variant: "outline"}),"border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/8 bg-emerald-500/3 backdrop-blur-sm text-xs",   )}
+                                  >
+
+                                    <ExternalLink className="w-3 h-3 mr-2" />
+                                    Live Demo
+
+                                  </Button>
+                              </DialogTrigger>
+
+                              <DialogContent>
+
+                                <div className="flex gap-10 items-center justify-center">
+
+                                 <div className="flex flex-col items-center gap-3">
+                                    <h2 className="text-xl font-bold">Use case link</h2>
+                                    <Link
+                                      href={'https://anime-watchlist-xi.vercel.app/'}
+                                      className={ cn( buttonVariants({variant: "outline"}),"border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/8 bg-emerald-500/3 backdrop-blur-sm text-xs",   )}
+                                      target="_blank"
+                                    >
+                                      <ExternalLink className="w-3 h-3 mr-2" />
+                                      Live Demo
+                                    </Link> 
+                                  </div>
+                                  
+                                  <div className="flex flex-col items-center gap-3">
+                                    <h2 className="text-xl font-bold">Dashboard Link</h2>
+                                    <Link
+                                      href={project.live}
+                                      className={ cn( buttonVariants({variant: "outline"}),"border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/8 bg-emerald-500/3 backdrop-blur-sm text-xs",   )}
+                                      target="_blank"
+                                    >
+                                      <ExternalLink className="w-3 h-3 mr-2" />
+                                      Live Demo
+                                    </Link> 
+                                  </div>
+
+                                </div>
+
+                              </DialogContent>
+
+                          </Dialog>
+                        
+                        }
                       </div>
                     </div>
                   </div>
