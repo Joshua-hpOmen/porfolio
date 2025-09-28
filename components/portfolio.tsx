@@ -160,8 +160,7 @@ export function Portfolio() {
 
             </span>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              I craft digital experiences that blend beautiful design with powerful functionality. Passionate about
-              creating solutions that make a difference.
+              I’m a developer with a strong focus on backend systems, web development, and low-level computing, always aiming to understand how things work under the hood. I enjoy working with tools like Go, Java, C/C++, Rust, and React, and I push myself to balance clean design with performance and functionality. Beyond just coding, I’m passionate about building real solutions, from web apps to exploring AI, systems design, and even hardware-level projects.
             </p>
             <Button
               onClick={() => scrollToSection("contact")}
