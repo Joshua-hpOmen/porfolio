@@ -5,16 +5,10 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
-import { ExternalLink, Github, Linkedin, Mail, Phone } from "lucide-react"
+import { ExternalLink, Github, Mail } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
-
-export function Portfolio() {
-  const [activeSection, setActiveSection] = useState("home")
-  const [currentTimelineIndex, setCurrentTimelineIndex] = useState(0)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const timelineRef = useRef<HTMLDivElement>(null)
 
   const timelineItems = [
     {
@@ -49,6 +43,14 @@ export function Portfolio() {
     }
   ]
 
+  const navbarArr = ["home", "about", "experience", "projects", "contact"];
+
+export function Portfolio() {
+  const [activeSection, setActiveSection] = useState("home")
+  const [currentTimelineIndex, setCurrentTimelineIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return
@@ -73,7 +75,28 @@ export function Portfolio() {
       scrollContainer.addEventListener("scroll", handleScroll)
       return () => scrollContainer.removeEventListener("scroll", handleScroll)
     }
-  }, [timelineItems.length])
+  }, [timelineItems.length]);
+
+  React.useEffect(() => {
+
+    const handleScroll = () => {
+      if(!scrollContainerRef.current) return;
+
+      const bottomRef = document.getElementById("contact")
+      if(!bottomRef) return;
+      const heightRelToContactElement = bottomRef.getBoundingClientRect().bottom ;
+      const viewportHeight = window.innerHeight;
+      const indx = 5 - (Math.round((heightRelToContactElement - 82) /viewportHeight ) - 1);
+
+      console.log("🔴The bottom of the contact", indx);
+      setActiveSection(navbarArr[indx <= 2 ? indx : indx - 1]);
+    }
+
+    if(!scrollContainerRef.current) return;
+    scrollContainerRef.current.addEventListener("scroll", handleScroll);
+
+    return () => scrollContainerRef.current?.removeEventListener("scroll", handleScroll);
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)

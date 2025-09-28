@@ -6,7 +6,7 @@ import './globals.css'
 import Head from 'next/head'
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Joshua Gashawbeza Portfolio',
 }
 
 export default function RootLayout({
