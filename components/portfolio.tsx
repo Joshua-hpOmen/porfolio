@@ -323,7 +323,7 @@ export function Portfolio() {
                 {
                   title: "Webscrapping Automation Tool",
                   description:
-                    "The solution to tedius tasks that know one wants to do, this webscrapping tool uses a user friendly ui and drag and drop to allow anyone to automate tasks via webscrapping and the help of Ai",
+                    "The solution to tedius tasks that no one wants to do, this webscrapping tool uses a user friendly ui and drag and drop to allow anyone to automate tasks via webscrapping and the help of Ai",
                   tech: ["React", "Node.js", "PostgreSQL", "Stripe", "ReactFlow", "Tanstackquery", "Prisma", "TypeScript", "Nextjs"],
                   image: "/flowcraft-image.png",
                   github: "https://github.com/Joshua-hpOmen/flow-craft",
